@@ -1,15 +1,13 @@
 # Javascript-Async
 
-이 문서는 자바스크립트 비동기 처리 방법에 관해 정리해둔 문서입니다.
-
-
+이 문서는 자바스크립트 비동기 처리 방법에 관해 정리해둔 문서입니다. 편의상 평어체로 작성했습니다.
 
 ## Callback
 
 가장 기본적인 방법은 콜백 함수를 이용하는 것이다. 1초에 걸쳐 1, 2, 3, 4를 프린트하는 코드를 작성해보자.
 
 ```javascript
-function printLater(nubmer, fn){
+function printLater(number, fn){
     setTimeout(
         () => {
             console.log(number);
@@ -19,18 +17,16 @@ function printLater(nubmer, fn){
     )
 }
 
-printLater(1, function(){
-    printLater(2, function(){
-        printLater(3, function(){
-            printLater(4);
+printLater(1, () => {
+	printLater(2, () => {
+		printLater(3, () => {
+			printLater(4);
         })
     })
 })
 ```
 
 가장 단순한 방법이다. 하지만 이런 방식이라면 작업이 많아지면 많아질수록 코드 구조는 더 깊어질 것이고, 점점 더 코드 읽기가 어려워질 것이다. 이를 콜백지옥이라 한다.
-
-
 
 ## Promise
 
