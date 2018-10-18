@@ -18,9 +18,9 @@ function printLater(number, fn){
 }
 
 printLater(1, () => {
-	printLater(2, () => {
-		printLater(3, () => {
-			printLater(4);
+    printLater(2, () => {
+        printLater(3, () => {
+            printLater(4);
         })
     })
 })
