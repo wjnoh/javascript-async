@@ -93,10 +93,10 @@ printLater(1)	// 1 출력하면서 2 반환
 Promise로 충분히 편해지긴 했지만, 그래도 여전히 콜백 방식으로 함수를 불러오기 때문에 코드가 비동기스럽고 알아보기 어렵다. 그래서 생겨난 것이 비동기지만 동기스러운 코드를 만들어주는 Async와 Await이다.  아래 코드를 한 번 보자.
 
 ```javascript
-async function asyncTest() {
+    async function asyncTest() {
     await firstFunction(){...};
     await secondFunction(){...};
-	await thirdFunction(){...};
+    await thirdFunction(){...};
 }
 
 asyncTest();
@@ -108,26 +108,26 @@ asyncTest();
 async function asyncTest() {
     try {
         await printLater(1);	// 1
-		await printLater(2);	// 2
-		await printLater(3);	// 2보다 큽니다!
+	await printLater(2);	// 2
+	await printLater(3);	// 2보다 큽니다!
     }
     catch(error) {
         console.log(error);
-	}
+    }
 }
 
 function printLater(number) {
-	return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         if(number > 2){
             return reject("2보다 큽니다!");
         }
-		setTimeout(
-			() => {
-            	console.log(number);
-				resolve();
-			},
-			1000
-		)
+	setTimeout(
+	    () => {
+                console.log(number);
+	        resolve();
+	    },
+	    1000
+	)
     })
 }
 
