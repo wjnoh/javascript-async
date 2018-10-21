@@ -93,7 +93,7 @@ printLater(1)	// 1 출력하면서 2 반환
 Promise로 충분히 편해지긴 했지만, 그래도 여전히 콜백 방식으로 함수를 불러오기 때문에 코드가 비동기스럽고 알아보기 어렵다. 그래서 생겨난 것이 비동기지만 동기스러운 코드를 만들어주는 Async와 Await이다.  아래 코드를 한 번 보자.
 
 ```javascript
-    async function asyncTest() {
+async function asyncTest() {
     await firstFunction(){...};
     await secondFunction(){...};
     await thirdFunction(){...};
