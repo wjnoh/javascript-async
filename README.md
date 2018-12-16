@@ -10,18 +10,18 @@
 
 ```javascript
 function printLater(number, fn) {
-  setTimeout(() => {
-    console.log(number);
-    if (fn) fn();
-  }, 1000);
+    setTimeout(() => {
+        console.log(number);
+        if (fn) fn();
+    }, 1000);
 }
 
 printLater(1, () => {
-  printLater(2, () => {
-    printLater(3, () => {
-      printLater(4);
+    printLater(2, () => {
+        printLater(3, () => {
+            printLater(4);
+        });
     });
-  });
 });
 ```
 
@@ -35,18 +35,18 @@ printLater(1, () => {
 
 ```javascript
 function printLater(number) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      console.log(number);
-      resolve();
-    }, 1000);
-  });
+    return new Promise(resolve => {
+        setTimeout(() => {
+            console.log(number);
+            resolve();
+        }, 1000);
+    });
 }
 
 printLater(1)
-  .then(() => printLater(2))
-  .then(() => printLater(3))
-  .then(() => printLater(4));
+    .then(() => printLater(2))
+    .then(() => printLater(3))
+    .then(() => printLater(4));
 ```
 
 new Promise로 promise 함수를 생성하면서, 그 파라미터로는 resolve를 받는다. resolve는 promise가 끝났음을 알릴 때 사용한다. 그리고 promise로 된 함수를 불러올 때는 .then을 사용하고 콜백 함수로 다음 promise 함수를 불러오면 된다. 여러번 적더라도 깊이는 같으므로 콜백 지옥에 빠질 걱정이 없다.
@@ -55,23 +55,23 @@ promise 함수의 파라미터로는 resolve도 있지만 reject도 있다. prom
 
 ```javascript
 function printLater(number) {
-  return new Promise((resolve, reject) => {
-    if (number > 4) {
-      return reject("4보다 큽니다.");
-    }
-    setTimeout(() => {
-      console.log(number);
-      resolve(number + 1);
-    }, 1000);
-  });
+    return new Promise((resolve, reject) => {
+        if (number > 4) {
+            return reject("4보다 큽니다.");
+        }
+        setTimeout(() => {
+            console.log(number);
+            resolve(number + 1);
+        }, 1000);
+    });
 }
 
 printLater(1) // 1 출력하면서 2 반환
-  .then(num => printLater(num)) // 2 출력하면서 3 반환
-  .then(num => printLater(num)) // 3 출력하면서 4 반환
-  .then(num => printLater(num)) // 4 출력하면서 5 반환
-  .then(num => printLater(num)) // 받은 5가 4보다 크므로 reject 반환, catch로 이동
-  .catch(e => console.log(e)); // 4보다 크다는 메시지를 출력
+    .then(num => printLater(num)) // 2 출력하면서 3 반환
+    .then(num => printLater(num)) // 3 출력하면서 4 반환
+    .then(num => printLater(num)) // 4 출력하면서 5 반환
+    .then(num => printLater(num)) // 받은 5가 4보다 크므로 reject 반환, catch로 이동
+    .catch(e => console.log(e)); // 4보다 크다는 메시지를 출력
 ```
 
 <br/>
@@ -82,9 +82,9 @@ Promise로 충분히 편해지긴 했지만, 그래도 여전히 콜백 방식�
 
 ```javascript
 async function asyncTest() {
-    await firstFunction(){...};
-    await secondFunction(){...};
-    await thirdFunction(){...};
+	await firstFunction(){...};
+	await secondFunction(){...};
+	await thirdFunction(){...};
 }
 
 asyncTest();
@@ -94,25 +94,25 @@ asyncTest();
 
 ```javascript
 async function asyncTest() {
-  try {
-    await printLater(1); // 1
-    await printLater(2); // 2
-    await printLater(3); // 2보다 큽니다!
-  } catch (error) {
-    console.log(error);
-  }
+    try {
+        await printLater(1); // 1
+        await printLater(2); // 2
+        await printLater(3); // 2보다 큽니다!
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 function printLater(number) {
-  return new Promise((resolve, reject) => {
-    if (number > 2) {
-      return reject("2보다 큽니다!");
-    }
-    setTimeout(() => {
-      console.log(number);
-      resolve();
-    }, 1000);
-  });
+    return new Promise((resolve, reject) => {
+        if (number > 2) {
+            return reject("2보다 큽니다!");
+        }
+        setTimeout(() => {
+            console.log(number);
+            resolve();
+        }, 1000);
+    });
 }
 
 asyncTest();
