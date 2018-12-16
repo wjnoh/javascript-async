@@ -38,9 +38,9 @@ xhr.send(JSON.stringify(data));
 
 ## Fetch
 
-GET
-
 -   JSON.parse() 메소드는 단순히 동기적으로 객체를 반환할 뿐이다. 때문에 then() 메소드로 Promise를 반환하는 fetch는 .json() 메소드를 통해 비동기적으로 Promise 객체를 반환해야 한다.
+
+GET
 
 ```javascript
 fetch("https://jsonplaceholder.typicode.com/todos/1")
